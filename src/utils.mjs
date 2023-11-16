@@ -9,3 +9,8 @@ export async function getView(name) {
   const filepath = path.resolve(process.cwd(), "src", "views", name + ".html");
   return await to(fs.readFile(filepath, "utf-8"));
 }
+
+export async function getViewStats(name) {
+  const filepath = path.resolve(process.cwd(), "src", "views", name + ".html");
+  return await to(fs.stat(filepath));
+}
