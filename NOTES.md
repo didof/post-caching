@@ -1,2 +1,0 @@
-- what happens if we add a sleep? What does the browser shows? Nothing?
-- how does it change if we start using cache control? Stale while revalidate?
