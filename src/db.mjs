@@ -6,10 +6,9 @@ const POSTS = [
   { title: "Dogs", tag: "animals" },
 ];
 
-export async function GET(tag) {
+export function GET(tag) {
   let posts = POSTS;
   if (tag) posts = posts.filter((post) => post.tag === tag);
-  await sleep(posts.length * 100);
   return posts;
 }
 

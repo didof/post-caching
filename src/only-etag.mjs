@@ -1,5 +1,5 @@
 import * as db from "./db.mjs";
-import { getURL, getView, createETag } from "./utils.mjs";
+import { getURL, getView, createETag, sleep } from "./utils.mjs";
 
 export default async (req, res) => {
   res.setHeader("Content-Type", "text/html");
@@ -19,6 +19,8 @@ export default async (req, res) => {
     "%POSTS%",
     posts.map((post) => `<li>${post.title}</li>`).join("\n")
   );
+
+  await sleep(10000)
 
   const etag = createETag(html);
   res.setHeader("ETag", etag);
