@@ -1,7 +1,7 @@
 import { getView, getViewStats } from "./utils.mjs";
 
 export default async (req, res) => {
-  res.setHeader("content-type", "text/html");
+  res.setHeader("Content-Type", "text/html");
 
   const [stats, errStats] = await getViewStats("index");
   if (errStats) {
@@ -12,9 +12,9 @@ export default async (req, res) => {
 
   const lastModified = new Date(stats.mtime);
   lastModified.setMilliseconds(0);
-  res.setHeader("last-modified", lastModified.toUTCString());
+  res.setHeader("Last-Modified", lastModified.toUTCString());
 
-  const ifModifiedSince = req.headers["if-modified-since"];
+  const ifModifiedSince = new Headers(req.headers).get("If-Modified-Since");
   if (
     ifModifiedSince &&
     new Date(ifModifiedSince).getTime() >= lastModified.getTime()
@@ -23,9 +23,9 @@ export default async (req, res) => {
     return;
   }
 
-  const [html, errGet] = await getView("index");
-  if (errGet) {
-    console.error(errGet);
+  const [html, errView] = await getView("index");
+  if (errView) {
+    console.error(errView);
     res.writeHead(500).end("Internal Server Error");
     return;
   }

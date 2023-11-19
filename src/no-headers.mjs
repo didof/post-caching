@@ -1,7 +1,7 @@
-import { getView } from "./utils.mjs";
+import { getView, sleep } from "./utils.mjs";
 
 export default async (req, res) => {
-  res.setHeader("content-type", "text/html");
+  res.setHeader("Content-Type", "text/html");
 
   const [html, err] = await getView("index");
   if (err) {
