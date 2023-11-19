@@ -6,6 +6,7 @@ const routes = {
   "/no-headers": endpoints.noHeaders,
   "/last-modified": endpoints.lastModified,
   "/only-etag": endpoints.onlyETag,
+  "/cache-control-and-etag": endpoints.cacheControlAndETag,
   "/db": endpoints.db,
 };
 
